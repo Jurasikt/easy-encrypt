@@ -30,9 +30,9 @@ do
                 openssl rand -base64 32 > passwd.txt
                 openssl enc -aes-256-ecb -a -salt -in $FILENAME -out encryptfile.enc -pass file:passwd.txt
                 openssl rsautl -encrypt -pubin  -inkey $PUB -in passwd.txt -out passwd.txt.enc
-                rm passwd.txt encryptfile.enc passwd.txt.enc
                 NAME=$(basename "$FILENAME")
                 zip "$NAME.zip" encryptfile.enc passwd.txt.enc
+                rm passwd.txt encryptfile.enc passwd.txt.enc
             else
                 echo "Files $FILENAME or $PUB do not exsist"
             fi
